@@ -38,6 +38,7 @@ PS1="\[\e[35m\][\w/]\[\e[32m\]\$(parse_git_branch)\[\e[0m\]:"
 
 export LESSCHARSET=utf-8
 export BROWSER=wslview
+export EDITOR=nvim
 
 # export LANG=ja_JP.UTF-8
 # export LANGUAGE=ja_JP:ja
