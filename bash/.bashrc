@@ -85,7 +85,7 @@ anew() {
         tmp=${current_dir#*atcoder/}
         contest=${tmp%%/*}
     else
-        readarray -t tmp_arr < <(~/.dotfiles/random_atcoder 200 600)
+        readarray -t tmp_arr < <(${acdir}/random_atcoder 200 600)
         contest="${tmp_arr[0]}"
         problems+=("${tmp_arr[1]}")
 
