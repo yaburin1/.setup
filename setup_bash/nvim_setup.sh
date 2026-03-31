@@ -24,6 +24,7 @@ ln -snf ~/.setup/bash/.bashrc ~/.bashrc
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 source ~/.bashrc
 cargo install cargo-compete
+rustup toolchain install 1.89.0-x86_64-unknown-linux-gnu
 mkdir ~/atcoder
 cd ~/atcoder
 echo "2"|cargo compete init atcoder
