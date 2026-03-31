@@ -1,0 +1,786 @@
+# ==================================================================
+# Alacritty Default Configuration
+# 参考: https://alacritty.org/config-alacritty.html
+# ==================================================================
+
+[general]
+working_directory = "None"
+
+[env]
+TERM = "alacritty"
+
+[window]
+dimensions = { columns = 116, lines = 50 }
+position = { x = 1270, y = 0 }
+# decorations = "None"                       # ("Full") "None"
+# opacity = 1.0 #透明度(1)
+# startup_mode = "Maximized" #("Windowed") "Maximized" ,"Fullscreen"
+# title = "Alacritty" # ("Alacritty")
+# dynamic_title = true #(true)
+
+[font]
+size = 14
+
+[font.normal]
+family = "HackGen35 Console NF"
+
+[colors]
+# transparent_background_colors = false     #背景色に関係なく透明化("false") true
+# draw_bold_text_with_bright_colors = false #太字テキストを明るく
+
+[colors.primary]
+background = "#272822"
+foreground = "#F8F8F2"
+
+[colors.normal]
+black = "#272822"
+red = "#F92672"
+green = "#A6E22E"
+yellow = "#F4BF75"
+blue = "#66D9EF"
+magenta = "#AE81FF"
+cyan = "#A1EFE4"
+white = "#F8F8F2"
+
+[colors.bright]
+black = "#75715E"
+red = "#F92672"
+green = "#A6E22E"
+yellow = "#F4BF75"
+blue = "#66D9EF"
+magenta = "#AE81FF"
+cyan = "#A1EFE4"
+white = "#F9F8F5"
+
+[selection]
+# semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true #false
+
+[cursor]
+style = { shape = "Beam", blinking = "Off" } #{ shape = "Block", blinking = "Off" }
+
+[terminal]
+shell.program = "/Windows/System32/wsl.exe"
+shell.args = ["-d", "test", "-e", "tmux", "new", "-A", "-s", "main", "-c", "~/"]
+
+[mouse]
+hide_when_typing = true #false
+bindings = [
+    { mouse = "Right", action = "Paste" },
+    { mouse = "Middle", action = "ReceiveChar" },
+]
+
+
+# CSI u / Kitty Keyboard Protocol — 完全キーバインド
+#
+# モディファイア番号: 2=Shift  3=Alt  4=S+A  5=Ctrl  6=S+C  7=A+C  8=S+A+C
+#
+# シーケンス形式:
+#   文字キー           : \u001b[<codepoint>;<mod>u
+#   カーソル/Home/End  : \u001b[1;<mod>A/B/C/D/H/F
+#   Insert〜PgDn      : \u001b[<num>;<mod>~
+#   F1–F4             : \u001b[1;<mod>P/Q/R/S
+#   F5–F12            : \u001b[<num>;<mod>~
+#
+# ⚠ TOML では \x## は無効。\uXXXX を使用すること
+# ⚠ アルファベット・数字・記号は Shift 単体を除外
+#   (Shift 単体バインドは大文字/記号入力を乗っ取るため)
+
+[keyboard]
+bindings = [
+
+    # ══════════════════════════════════════════════════════
+    # 特殊キー
+    # ══════════════════════════════════════════════════════
+
+    # Return (13)
+    { key = "Return", mods = "Shift", chars = "\u001b[13;2u" },
+    { key = "Return", mods = "Alt", chars = "\u001b[13;3u" },
+    { key = "Return", mods = "Shift|Alt", chars = "\u001b[13;4u" },
+    { key = "Return", mods = "Control", chars = "\u001b[13;5u" },
+    { key = "Return", mods = "Shift|Control", chars = "\u001b[13;6u" },
+    { key = "Return", mods = "Alt|Control", chars = "\u001b[13;7u" },
+    { key = "Return", mods = "Shift|Alt|Control", chars = "\u001b[13;8u" },
+
+    # Tab (9)
+    { key = "Tab", mods = "Shift", chars = "\u001b[9;2u" },
+    { key = "Tab", mods = "Alt", chars = "\u001b[9;3u" },
+    { key = "Tab", mods = "Shift|Alt", chars = "\u001b[9;4u" },
+    { key = "Tab", mods = "Control", chars = "\u001b[9;5u" },
+    { key = "Tab", mods = "Shift|Control", chars = "\u001b[9;6u" },
+    { key = "Tab", mods = "Alt|Control", chars = "\u001b[9;7u" },
+    { key = "Tab", mods = "Shift|Alt|Control", chars = "\u001b[9;8u" },
+
+    # Backspace (127)
+    { key = "Back", mods = "Shift", chars = "\u001b[127;2u" },
+    { key = "Back", mods = "Alt", chars = "\u001b[127;3u" },
+    { key = "Back", mods = "Shift|Alt", chars = "\u001b[127;4u" },
+    { key = "Back", mods = "Control", chars = "\u001b[127;5u" },
+    { key = "Back", mods = "Shift|Control", chars = "\u001b[127;6u" },
+    { key = "Back", mods = "Alt|Control", chars = "\u001b[127;7u" },
+    { key = "Back", mods = "Shift|Alt|Control", chars = "\u001b[127;8u" },
+
+    # Escape (27)
+    { key = "Escape", mods = "Shift", chars = "\u001b[27;2u" },
+    { key = "Escape", mods = "Alt", chars = "\u001b[27;3u" },
+    { key = "Escape", mods = "Shift|Alt", chars = "\u001b[27;4u" },
+    { key = "Escape", mods = "Control", chars = "\u001b[27;5u" },
+    { key = "Escape", mods = "Shift|Control", chars = "\u001b[27;6u" },
+    { key = "Escape", mods = "Alt|Control", chars = "\u001b[27;7u" },
+    { key = "Escape", mods = "Shift|Alt|Control", chars = "\u001b[27;8u" },
+
+    # Space (32)
+    { key = "Space", mods = "Shift", chars = "\u001b[32;2u" },
+    { key = "Space", mods = "Alt", chars = "\u001b[32;3u" },
+    { key = "Space", mods = "Shift|Alt", chars = "\u001b[32;4u" },
+    { key = "Space", mods = "Control", chars = "\u001b[32;5u" },
+    { key = "Space", mods = "Shift|Control", chars = "\u001b[32;6u" },
+    { key = "Space", mods = "Alt|Control", chars = "\u001b[32;7u" },
+    { key = "Space", mods = "Shift|Alt|Control", chars = "\u001b[32;8u" },
+
+    # ══════════════════════════════════════════════════════
+    # カーソルキー
+    # ══════════════════════════════════════════════════════
+
+    { key = "Up", mods = "Shift", chars = "\u001b[1;2A" },
+    { key = "Up", mods = "Alt", chars = "\u001b[1;3A" },
+    { key = "Up", mods = "Shift|Alt", chars = "\u001b[1;4A" },
+    { key = "Up", mods = "Control", chars = "\u001b[1;5A" },
+    { key = "Up", mods = "Shift|Control", chars = "\u001b[1;6A" },
+    { key = "Up", mods = "Alt|Control", chars = "\u001b[1;7A" },
+    { key = "Up", mods = "Shift|Alt|Control", chars = "\u001b[1;8A" },
+
+    { key = "Down", mods = "Shift", chars = "\u001b[1;2B" },
+    { key = "Down", mods = "Alt", chars = "\u001b[1;3B" },
+    { key = "Down", mods = "Shift|Alt", chars = "\u001b[1;4B" },
+    { key = "Down", mods = "Control", chars = "\u001b[1;5B" },
+    { key = "Down", mods = "Shift|Control", chars = "\u001b[1;6B" },
+    { key = "Down", mods = "Alt|Control", chars = "\u001b[1;7B" },
+    { key = "Down", mods = "Shift|Alt|Control", chars = "\u001b[1;8B" },
+
+    { key = "Right", mods = "Shift", chars = "\u001b[1;2C" },
+    { key = "Right", mods = "Alt", chars = "\u001b[1;3C" },
+    { key = "Right", mods = "Shift|Alt", chars = "\u001b[1;4C" },
+    { key = "Right", mods = "Control", chars = "\u001b[1;5C" },
+    { key = "Right", mods = "Shift|Control", chars = "\u001b[1;6C" },
+    { key = "Right", mods = "Alt|Control", chars = "\u001b[1;7C" },
+    { key = "Right", mods = "Shift|Alt|Control", chars = "\u001b[1;8C" },
+
+    { key = "Left", mods = "Shift", chars = "\u001b[1;2D" },
+    { key = "Left", mods = "Alt", chars = "\u001b[1;3D" },
+    { key = "Left", mods = "Shift|Alt", chars = "\u001b[1;4D" },
+    { key = "Left", mods = "Control", chars = "\u001b[1;5D" },
+    { key = "Left", mods = "Shift|Control", chars = "\u001b[1;6D" },
+    { key = "Left", mods = "Alt|Control", chars = "\u001b[1;7D" },
+    { key = "Left", mods = "Shift|Alt|Control", chars = "\u001b[1;8D" },
+
+    # ══════════════════════════════════════════════════════
+    # 編集キー
+    # ══════════════════════════════════════════════════════
+
+    { key = "Home", mods = "Shift", chars = "\u001b[1;2H" },
+    { key = "Home", mods = "Alt", chars = "\u001b[1;3H" },
+    { key = "Home", mods = "Shift|Alt", chars = "\u001b[1;4H" },
+    { key = "Home", mods = "Control", chars = "\u001b[1;5H" },
+    { key = "Home", mods = "Shift|Control", chars = "\u001b[1;6H" },
+    { key = "Home", mods = "Alt|Control", chars = "\u001b[1;7H" },
+    { key = "Home", mods = "Shift|Alt|Control", chars = "\u001b[1;8H" },
+
+    { key = "End", mods = "Shift", chars = "\u001b[1;2F" },
+    { key = "End", mods = "Alt", chars = "\u001b[1;3F" },
+    { key = "End", mods = "Shift|Alt", chars = "\u001b[1;4F" },
+    { key = "End", mods = "Control", chars = "\u001b[1;5F" },
+    { key = "End", mods = "Shift|Control", chars = "\u001b[1;6F" },
+    { key = "End", mods = "Alt|Control", chars = "\u001b[1;7F" },
+    { key = "End", mods = "Shift|Alt|Control", chars = "\u001b[1;8F" },
+
+    { key = "Insert", mods = "Shift", chars = "\u001b[2;2~" },
+    { key = "Insert", mods = "Alt", chars = "\u001b[2;3~" },
+    { key = "Insert", mods = "Shift|Alt", chars = "\u001b[2;4~" },
+    { key = "Insert", mods = "Control", chars = "\u001b[2;5~" },
+    { key = "Insert", mods = "Shift|Control", chars = "\u001b[2;6~" },
+    { key = "Insert", mods = "Alt|Control", chars = "\u001b[2;7~" },
+    { key = "Insert", mods = "Shift|Alt|Control", chars = "\u001b[2;8~" },
+
+    { key = "Delete", mods = "Shift", chars = "\u001b[3;2~" },
+    { key = "Delete", mods = "Alt", chars = "\u001b[3;3~" },
+    { key = "Delete", mods = "Shift|Alt", chars = "\u001b[3;4~" },
+    { key = "Delete", mods = "Control", chars = "\u001b[3;5~" },
+    { key = "Delete", mods = "Shift|Control", chars = "\u001b[3;6~" },
+    { key = "Delete", mods = "Alt|Control", chars = "\u001b[3;7~" },
+    { key = "Delete", mods = "Shift|Alt|Control", chars = "\u001b[3;8~" },
+
+    { key = "PageUp", mods = "Shift", chars = "\u001b[5;2~" },
+    { key = "PageUp", mods = "Alt", chars = "\u001b[5;3~" },
+    { key = "PageUp", mods = "Shift|Alt", chars = "\u001b[5;4~" },
+    { key = "PageUp", mods = "Control", chars = "\u001b[5;5~" },
+    { key = "PageUp", mods = "Shift|Control", chars = "\u001b[5;6~" },
+    { key = "PageUp", mods = "Alt|Control", chars = "\u001b[5;7~" },
+    { key = "PageUp", mods = "Shift|Alt|Control", chars = "\u001b[5;8~" },
+
+    { key = "PageDown", mods = "Shift", chars = "\u001b[6;2~" },
+    { key = "PageDown", mods = "Alt", chars = "\u001b[6;3~" },
+    { key = "PageDown", mods = "Shift|Alt", chars = "\u001b[6;4~" },
+    { key = "PageDown", mods = "Control", chars = "\u001b[6;5~" },
+    { key = "PageDown", mods = "Shift|Control", chars = "\u001b[6;6~" },
+    { key = "PageDown", mods = "Alt|Control", chars = "\u001b[6;7~" },
+    { key = "PageDown", mods = "Shift|Alt|Control", chars = "\u001b[6;8~" },
+
+    # ══════════════════════════════════════════════════════
+    # ファンクションキー
+    # ══════════════════════════════════════════════════════
+
+    { key = "F1", mods = "Shift", chars = "\u001b[1;2P" },
+    { key = "F1", mods = "Alt", chars = "\u001b[1;3P" },
+    { key = "F1", mods = "Shift|Alt", chars = "\u001b[1;4P" },
+    { key = "F1", mods = "Control", chars = "\u001b[1;5P" },
+    { key = "F1", mods = "Shift|Control", chars = "\u001b[1;6P" },
+    { key = "F1", mods = "Alt|Control", chars = "\u001b[1;7P" },
+    { key = "F1", mods = "Shift|Alt|Control", chars = "\u001b[1;8P" },
+
+    { key = "F2", mods = "Shift", chars = "\u001b[1;2Q" },
+    { key = "F2", mods = "Alt", chars = "\u001b[1;3Q" },
+    { key = "F2", mods = "Shift|Alt", chars = "\u001b[1;4Q" },
+    { key = "F2", mods = "Control", chars = "\u001b[1;5Q" },
+    { key = "F2", mods = "Shift|Control", chars = "\u001b[1;6Q" },
+    { key = "F2", mods = "Alt|Control", chars = "\u001b[1;7Q" },
+    { key = "F2", mods = "Shift|Alt|Control", chars = "\u001b[1;8Q" },
+
+    { key = "F3", mods = "Shift", chars = "\u001b[1;2R" },
+    { key = "F3", mods = "Alt", chars = "\u001b[1;3R" },
+    { key = "F3", mods = "Shift|Alt", chars = "\u001b[1;4R" },
+    { key = "F3", mods = "Control", chars = "\u001b[1;5R" },
+    { key = "F3", mods = "Shift|Control", chars = "\u001b[1;6R" },
+    { key = "F3", mods = "Alt|Control", chars = "\u001b[1;7R" },
+    { key = "F3", mods = "Shift|Alt|Control", chars = "\u001b[1;8R" },
+
+    { key = "F4", mods = "Shift", chars = "\u001b[1;2S" },
+    { key = "F4", mods = "Alt", chars = "\u001b[1;3S" },
+    { key = "F4", mods = "Shift|Alt", chars = "\u001b[1;4S" },
+    { key = "F4", mods = "Control", chars = "\u001b[1;5S" },
+    { key = "F4", mods = "Shift|Control", chars = "\u001b[1;6S" },
+    { key = "F4", mods = "Alt|Control", chars = "\u001b[1;7S" },
+    { key = "F4", mods = "Shift|Alt|Control", chars = "\u001b[1;8S" },
+
+    { key = "F5", mods = "Shift", chars = "\u001b[15;2~" },
+    { key = "F5", mods = "Alt", chars = "\u001b[15;3~" },
+    { key = "F5", mods = "Shift|Alt", chars = "\u001b[15;4~" },
+    { key = "F5", mods = "Control", chars = "\u001b[15;5~" },
+    { key = "F5", mods = "Shift|Control", chars = "\u001b[15;6~" },
+    { key = "F5", mods = "Alt|Control", chars = "\u001b[15;7~" },
+    { key = "F5", mods = "Shift|Alt|Control", chars = "\u001b[15;8~" },
+
+    { key = "F6", mods = "Shift", chars = "\u001b[17;2~" },
+    { key = "F6", mods = "Alt", chars = "\u001b[17;3~" },
+    { key = "F6", mods = "Shift|Alt", chars = "\u001b[17;4~" },
+    { key = "F6", mods = "Control", chars = "\u001b[17;5~" },
+    { key = "F6", mods = "Shift|Control", chars = "\u001b[17;6~" },
+    { key = "F6", mods = "Alt|Control", chars = "\u001b[17;7~" },
+    { key = "F6", mods = "Shift|Alt|Control", chars = "\u001b[17;8~" },
+
+    { key = "F7", mods = "Shift", chars = "\u001b[18;2~" },
+    { key = "F7", mods = "Alt", chars = "\u001b[18;3~" },
+    { key = "F7", mods = "Shift|Alt", chars = "\u001b[18;4~" },
+    { key = "F7", mods = "Control", chars = "\u001b[18;5~" },
+    { key = "F7", mods = "Shift|Control", chars = "\u001b[18;6~" },
+    { key = "F7", mods = "Alt|Control", chars = "\u001b[18;7~" },
+    { key = "F7", mods = "Shift|Alt|Control", chars = "\u001b[18;8~" },
+
+    { key = "F8", mods = "Shift", chars = "\u001b[19;2~" },
+    { key = "F8", mods = "Alt", chars = "\u001b[19;3~" },
+    { key = "F8", mods = "Shift|Alt", chars = "\u001b[19;4~" },
+    { key = "F8", mods = "Control", chars = "\u001b[19;5~" },
+    { key = "F8", mods = "Shift|Control", chars = "\u001b[19;6~" },
+    { key = "F8", mods = "Alt|Control", chars = "\u001b[19;7~" },
+    { key = "F8", mods = "Shift|Alt|Control", chars = "\u001b[19;8~" },
+
+    { key = "F9", mods = "Shift", chars = "\u001b[20;2~" },
+    { key = "F9", mods = "Alt", chars = "\u001b[20;3~" },
+    { key = "F9", mods = "Shift|Alt", chars = "\u001b[20;4~" },
+    { key = "F9", mods = "Control", chars = "\u001b[20;5~" },
+    { key = "F9", mods = "Shift|Control", chars = "\u001b[20;6~" },
+    { key = "F9", mods = "Alt|Control", chars = "\u001b[20;7~" },
+    { key = "F9", mods = "Shift|Alt|Control", chars = "\u001b[20;8~" },
+
+    { key = "F10", mods = "Shift", chars = "\u001b[21;2~" },
+    { key = "F10", mods = "Alt", chars = "\u001b[21;3~" },
+    { key = "F10", mods = "Shift|Alt", chars = "\u001b[21;4~" },
+    { key = "F10", mods = "Control", chars = "\u001b[21;5~" },
+    { key = "F10", mods = "Shift|Control", chars = "\u001b[21;6~" },
+    { key = "F10", mods = "Alt|Control", chars = "\u001b[21;7~" },
+    { key = "F10", mods = "Shift|Alt|Control", chars = "\u001b[21;8~" },
+
+    { key = "F11", mods = "Shift", chars = "\u001b[23;2~" },
+    { key = "F11", mods = "Alt", chars = "\u001b[23;3~" },
+    { key = "F11", mods = "Shift|Alt", chars = "\u001b[23;4~" },
+    { key = "F11", mods = "Control", chars = "\u001b[23;5~" },
+    { key = "F11", mods = "Shift|Control", chars = "\u001b[23;6~" },
+    { key = "F11", mods = "Alt|Control", chars = "\u001b[23;7~" },
+    { key = "F11", mods = "Shift|Alt|Control", chars = "\u001b[23;8~" },
+
+    { key = "F12", mods = "Shift", chars = "\u001b[24;2~" },
+    { key = "F12", mods = "Alt", chars = "\u001b[24;3~" },
+    { key = "F12", mods = "Shift|Alt", chars = "\u001b[24;4~" },
+    { key = "F12", mods = "Control", chars = "\u001b[24;5~" },
+    { key = "F12", mods = "Shift|Control", chars = "\u001b[24;6~" },
+    { key = "F12", mods = "Alt|Control", chars = "\u001b[24;7~" },
+    { key = "F12", mods = "Shift|Alt|Control", chars = "\u001b[24;8~" },
+
+    # ══════════════════════════════════════════════════════
+    # アルファベット a–z  (Shift 単体除外)
+    # ══════════════════════════════════════════════════════
+
+    { key = "a", mods = "Alt", chars = "\u001b[97;3u" },
+    { key = "a", mods = "Shift|Alt", chars = "\u001b[97;4u" },
+    { key = "a", mods = "Control", chars = "\u001b[97;5u" },
+    { key = "a", mods = "Shift|Control", chars = "\u001b[97;6u" },
+    { key = "a", mods = "Alt|Control", chars = "\u001b[97;7u" },
+    { key = "a", mods = "Shift|Alt|Control", chars = "\u001b[97;8u" },
+
+    { key = "b", mods = "Alt", chars = "\u001b[98;3u" },
+    { key = "b", mods = "Shift|Alt", chars = "\u001b[98;4u" },
+    { key = "b", mods = "Control", chars = "\u001b[98;5u" },
+    { key = "b", mods = "Shift|Control", chars = "\u001b[98;6u" },
+    { key = "b", mods = "Alt|Control", chars = "\u001b[98;7u" },
+    { key = "b", mods = "Shift|Alt|Control", chars = "\u001b[98;8u" },
+
+    { key = "c", mods = "Alt", chars = "\u001b[99;3u" },
+    { key = "c", mods = "Shift|Alt", chars = "\u001b[99;4u" },
+    # { key = "c", mods = "Control", chars = "\u001b[99;5u" },
+    { key = "c", mods = "Shift|Control", chars = "\u001b[99;6u" },
+    { key = "c", mods = "Alt|Control", chars = "\u001b[99;7u" },
+    { key = "c", mods = "Shift|Alt|Control", chars = "\u001b[99;8u" },
+
+    { key = "d", mods = "Alt", chars = "\u001b[100;3u" },
+    { key = "d", mods = "Shift|Alt", chars = "\u001b[100;4u" },
+    { key = "d", mods = "Control", chars = "\u001b[100;5u" },
+    { key = "d", mods = "Shift|Control", chars = "\u001b[100;6u" },
+    { key = "d", mods = "Alt|Control", chars = "\u001b[100;7u" },
+    { key = "d", mods = "Shift|Alt|Control", chars = "\u001b[100;8u" },
+
+    { key = "e", mods = "Alt", chars = "\u001b[101;3u" },
+    { key = "e", mods = "Shift|Alt", chars = "\u001b[101;4u" },
+    { key = "e", mods = "Control", chars = "\u001b[101;5u" },
+    { key = "e", mods = "Shift|Control", chars = "\u001b[101;6u" },
+    { key = "e", mods = "Alt|Control", chars = "\u001b[101;7u" },
+    { key = "e", mods = "Shift|Alt|Control", chars = "\u001b[101;8u" },
+
+    { key = "f", mods = "Alt", chars = "\u001b[102;3u" },
+    { key = "f", mods = "Shift|Alt", chars = "\u001b[102;4u" },
+    { key = "f", mods = "Control", chars = "\u001b[102;5u" },
+    { key = "f", mods = "Shift|Control", chars = "\u001b[102;6u" },
+    { key = "f", mods = "Alt|Control", chars = "\u001b[102;7u" },
+    { key = "f", mods = "Shift|Alt|Control", chars = "\u001b[102;8u" },
+
+    { key = "g", mods = "Alt", chars = "\u001b[103;3u" },
+    { key = "g", mods = "Shift|Alt", chars = "\u001b[103;4u" },
+    { key = "g", mods = "Control", chars = "\u001b[103;5u" },
+    { key = "g", mods = "Shift|Control", chars = "\u001b[103;6u" },
+    { key = "g", mods = "Alt|Control", chars = "\u001b[103;7u" },
+    { key = "g", mods = "Shift|Alt|Control", chars = "\u001b[103;8u" },
+
+    { key = "h", mods = "Alt", chars = "\u001b[104;3u" },
+    { key = "h", mods = "Shift|Alt", chars = "\u001b[104;4u" },
+    { key = "h", mods = "Control", chars = "\u001b[104;5u" },
+    { key = "h", mods = "Shift|Control", chars = "\u001b[104;6u" },
+    { key = "h", mods = "Alt|Control", chars = "\u001b[104;7u" },
+    { key = "h", mods = "Shift|Alt|Control", chars = "\u001b[104;8u" },
+
+    { key = "i", mods = "Alt", chars = "\u001b[105;3u" },
+    { key = "i", mods = "Shift|Alt", chars = "\u001b[105;4u" },
+    { key = "i", mods = "Control", chars = "\u001b[105;5u" },
+    { key = "i", mods = "Shift|Control", chars = "\u001b[105;6u" },
+    { key = "i", mods = "Alt|Control", chars = "\u001b[105;7u" },
+    { key = "i", mods = "Shift|Alt|Control", chars = "\u001b[105;8u" },
+
+    { key = "j", mods = "Alt", chars = "\u001b[106;3u" },
+    { key = "j", mods = "Shift|Alt", chars = "\u001b[106;4u" },
+    { key = "j", mods = "Control", chars = "\u001b[106;5u" },
+    { key = "j", mods = "Shift|Control", chars = "\u001b[106;6u" },
+    { key = "j", mods = "Alt|Control", chars = "\u001b[106;7u" },
+    { key = "j", mods = "Shift|Alt|Control", chars = "\u001b[106;8u" },
+
+    { key = "k", mods = "Alt", chars = "\u001b[107;3u" },
+    { key = "k", mods = "Shift|Alt", chars = "\u001b[107;4u" },
+    { key = "k", mods = "Control", chars = "\u001b[107;5u" },
+    { key = "k", mods = "Shift|Control", chars = "\u001b[107;6u" },
+    { key = "k", mods = "Alt|Control", chars = "\u001b[107;7u" },
+    { key = "k", mods = "Shift|Alt|Control", chars = "\u001b[107;8u" },
+
+    { key = "l", mods = "Alt", chars = "\u001b[108;3u" },
+    { key = "l", mods = "Shift|Alt", chars = "\u001b[108;4u" },
+    { key = "l", mods = "Control", chars = "\u001b[108;5u" },
+    { key = "l", mods = "Shift|Control", chars = "\u001b[108;6u" },
+    { key = "l", mods = "Alt|Control", chars = "\u001b[108;7u" },
+    { key = "l", mods = "Shift|Alt|Control", chars = "\u001b[108;8u" },
+
+    { key = "m", mods = "Alt", chars = "\u001b[109;3u" },
+    { key = "m", mods = "Shift|Alt", chars = "\u001b[109;4u" },
+    { key = "m", mods = "Control", chars = "\u001b[109;5u" },
+    { key = "m", mods = "Shift|Control", chars = "\u001b[109;6u" },
+    { key = "m", mods = "Alt|Control", chars = "\u001b[109;7u" },
+    { key = "m", mods = "Shift|Alt|Control", chars = "\u001b[109;8u" },
+
+    { key = "n", mods = "Alt", chars = "\u001b[110;3u" },
+    { key = "n", mods = "Shift|Alt", chars = "\u001b[110;4u" },
+    { key = "n", mods = "Control", chars = "\u001b[110;5u" },
+    { key = "n", mods = "Shift|Control", chars = "\u001b[110;6u" },
+    { key = "n", mods = "Alt|Control", chars = "\u001b[110;7u" },
+    { key = "n", mods = "Shift|Alt|Control", chars = "\u001b[110;8u" },
+
+    { key = "o", mods = "Alt", chars = "\u001b[111;3u" },
+    { key = "o", mods = "Shift|Alt", chars = "\u001b[111;4u" },
+    { key = "o", mods = "Control", chars = "\u001b[111;5u" },
+    { key = "o", mods = "Shift|Control", chars = "\u001b[111;6u" },
+    { key = "o", mods = "Alt|Control", chars = "\u001b[111;7u" },
+    { key = "o", mods = "Shift|Alt|Control", chars = "\u001b[111;8u" },
+
+    { key = "p", mods = "Alt", chars = "\u001b[112;3u" },
+    { key = "p", mods = "Shift|Alt", chars = "\u001b[112;4u" },
+    { key = "p", mods = "Control", chars = "\u001b[112;5u" },
+    { key = "p", mods = "Shift|Control", chars = "\u001b[112;6u" },
+    { key = "p", mods = "Alt|Control", chars = "\u001b[112;7u" },
+    { key = "p", mods = "Shift|Alt|Control", chars = "\u001b[112;8u" },
+
+    { key = "q", mods = "Alt", chars = "\u001b[113;3u" },
+    { key = "q", mods = "Shift|Alt", chars = "\u001b[113;4u" },
+    { key = "q", mods = "Control", chars = "\u001b[113;5u" },
+    { key = "q", mods = "Shift|Control", chars = "\u001b[113;6u" },
+    { key = "q", mods = "Alt|Control", chars = "\u001b[113;7u" },
+    { key = "q", mods = "Shift|Alt|Control", chars = "\u001b[113;8u" },
+
+    { key = "r", mods = "Alt", chars = "\u001b[114;3u" },
+    { key = "r", mods = "Shift|Alt", chars = "\u001b[114;4u" },
+    { key = "r", mods = "Control", chars = "\u001b[114;5u" },
+    { key = "r", mods = "Shift|Control", chars = "\u001b[114;6u" },
+    { key = "r", mods = "Alt|Control", chars = "\u001b[114;7u" },
+    { key = "r", mods = "Shift|Alt|Control", chars = "\u001b[114;8u" },
+
+    { key = "s", mods = "Alt", chars = "\u001b[115;3u" },
+    { key = "s", mods = "Shift|Alt", chars = "\u001b[115;4u" },
+    { key = "s", mods = "Control", chars = "\u001b[115;5u" },
+    { key = "s", mods = "Shift|Control", chars = "\u001b[115;6u" },
+    { key = "s", mods = "Alt|Control", chars = "\u001b[115;7u" },
+    { key = "s", mods = "Shift|Alt|Control", chars = "\u001b[115;8u" },
+
+    { key = "t", mods = "Alt", chars = "\u001b[116;3u" },
+    { key = "t", mods = "Shift|Alt", chars = "\u001b[116;4u" },
+    { key = "t", mods = "Control", chars = "\u001b[116;5u" },
+    { key = "t", mods = "Shift|Control", chars = "\u001b[116;6u" },
+    { key = "t", mods = "Alt|Control", chars = "\u001b[116;7u" },
+    { key = "t", mods = "Shift|Alt|Control", chars = "\u001b[116;8u" },
+
+    { key = "u", mods = "Alt", chars = "\u001b[117;3u" },
+    { key = "u", mods = "Shift|Alt", chars = "\u001b[117;4u" },
+    { key = "u", mods = "Control", chars = "\u001b[117;5u" },
+    { key = "u", mods = "Shift|Control", chars = "\u001b[117;6u" },
+    { key = "u", mods = "Alt|Control", chars = "\u001b[117;7u" },
+    { key = "u", mods = "Shift|Alt|Control", chars = "\u001b[117;8u" },
+
+    { key = "v", mods = "Alt", chars = "\u001b[118;3u" },
+    { key = "v", mods = "Shift|Alt", chars = "\u001b[118;4u" },
+    { key = "v", mods = "Control", chars = "\u001b[118;5u" },
+    { key = "v", mods = "Shift|Control", chars = "\u001b[118;6u" },
+    { key = "v", mods = "Alt|Control", chars = "\u001b[118;7u" },
+    { key = "v", mods = "Shift|Alt|Control", chars = "\u001b[118;8u" },
+
+    { key = "w", mods = "Alt", chars = "\u001b[119;3u" },
+    { key = "w", mods = "Shift|Alt", chars = "\u001b[119;4u" },
+    { key = "w", mods = "Control", chars = "\u001b[119;5u" },
+    { key = "w", mods = "Shift|Control", chars = "\u001b[119;6u" },
+    { key = "w", mods = "Alt|Control", chars = "\u001b[119;7u" },
+    { key = "w", mods = "Shift|Alt|Control", chars = "\u001b[119;8u" },
+
+    { key = "x", mods = "Alt", chars = "\u001b[120;3u" },
+    { key = "x", mods = "Shift|Alt", chars = "\u001b[120;4u" },
+    { key = "x", mods = "Control", chars = "\u001b[120;5u" },
+    { key = "x", mods = "Shift|Control", chars = "\u001b[120;6u" },
+    { key = "x", mods = "Alt|Control", chars = "\u001b[120;7u" },
+    { key = "x", mods = "Shift|Alt|Control", chars = "\u001b[120;8u" },
+
+    { key = "y", mods = "Alt", chars = "\u001b[121;3u" },
+    { key = "y", mods = "Shift|Alt", chars = "\u001b[121;4u" },
+    { key = "y", mods = "Control", chars = "\u001b[121;5u" },
+    { key = "y", mods = "Shift|Control", chars = "\u001b[121;6u" },
+    { key = "y", mods = "Alt|Control", chars = "\u001b[121;7u" },
+    { key = "y", mods = "Shift|Alt|Control", chars = "\u001b[121;8u" },
+
+    { key = "z", mods = "Alt", chars = "\u001b[122;3u" },
+    { key = "z", mods = "Shift|Alt", chars = "\u001b[122;4u" },
+    # { key = "z", mods = "Control", chars = "\u001b[122;5u" },
+    { key = "z", mods = "Shift|Control", chars = "\u001b[122;6u" },
+    { key = "z", mods = "Alt|Control", chars = "\u001b[122;7u" },
+    { key = "z", mods = "Shift|Alt|Control", chars = "\u001b[122;8u" },
+
+    # ══════════════════════════════════════════════════════
+    # 数字キー 0–9  (Shift 単体除外)
+    # ══════════════════════════════════════════════════════
+
+    { key = "1", mods = "Alt", chars = "\u001b[49;3u" },
+    { key = "1", mods = "Shift|Alt", chars = "\u001b[49;4u" },
+    { key = "1", mods = "Control", chars = "\u001b[49;5u" },
+    { key = "1", mods = "Shift|Control", chars = "\u001b[49;6u" },
+    { key = "1", mods = "Alt|Control", chars = "\u001b[49;7u" },
+    { key = "1", mods = "Shift|Alt|Control", chars = "\u001b[49;8u" },
+
+    { key = "2", mods = "Alt", chars = "\u001b[50;3u" },
+    { key = "2", mods = "Shift|Alt", chars = "\u001b[50;4u" },
+    { key = "2", mods = "Control", chars = "\u001b[50;5u" },
+    { key = "2", mods = "Shift|Control", chars = "\u001b[50;6u" },
+    { key = "2", mods = "Alt|Control", chars = "\u001b[50;7u" },
+    { key = "2", mods = "Shift|Alt|Control", chars = "\u001b[50;8u" },
+
+    { key = "3", mods = "Alt", chars = "\u001b[51;3u" },
+    { key = "3", mods = "Shift|Alt", chars = "\u001b[51;4u" },
+    { key = "3", mods = "Control", chars = "\u001b[51;5u" },
+    { key = "3", mods = "Shift|Control", chars = "\u001b[51;6u" },
+    { key = "3", mods = "Alt|Control", chars = "\u001b[51;7u" },
+    { key = "3", mods = "Shift|Alt|Control", chars = "\u001b[51;8u" },
+
+    { key = "4", mods = "Alt", chars = "\u001b[52;3u" },
+    { key = "4", mods = "Shift|Alt", chars = "\u001b[52;4u" },
+    { key = "4", mods = "Control", chars = "\u001b[52;5u" },
+    { key = "4", mods = "Shift|Control", chars = "\u001b[52;6u" },
+    { key = "4", mods = "Alt|Control", chars = "\u001b[52;7u" },
+    { key = "4", mods = "Shift|Alt|Control", chars = "\u001b[52;8u" },
+
+    { key = "5", mods = "Alt", chars = "\u001b[53;3u" },
+    { key = "5", mods = "Shift|Alt", chars = "\u001b[53;4u" },
+    { key = "5", mods = "Control", chars = "\u001b[53;5u" },
+    { key = "5", mods = "Shift|Control", chars = "\u001b[53;6u" },
+    { key = "5", mods = "Alt|Control", chars = "\u001b[53;7u" },
+    { key = "5", mods = "Shift|Alt|Control", chars = "\u001b[53;8u" },
+
+    { key = "6", mods = "Alt", chars = "\u001b[54;3u" },
+    { key = "6", mods = "Shift|Alt", chars = "\u001b[54;4u" },
+    { key = "6", mods = "Control", chars = "\u001b[54;5u" },
+    { key = "6", mods = "Shift|Control", chars = "\u001b[54;6u" },
+    { key = "6", mods = "Alt|Control", chars = "\u001b[54;7u" },
+    { key = "6", mods = "Shift|Alt|Control", chars = "\u001b[54;8u" },
+
+    { key = "7", mods = "Alt", chars = "\u001b[55;3u" },
+    { key = "7", mods = "Shift|Alt", chars = "\u001b[55;4u" },
+    { key = "7", mods = "Control", chars = "\u001b[55;5u" },
+    { key = "7", mods = "Shift|Control", chars = "\u001b[55;6u" },
+    { key = "7", mods = "Alt|Control", chars = "\u001b[55;7u" },
+    { key = "7", mods = "Shift|Alt|Control", chars = "\u001b[55;8u" },
+
+    { key = "8", mods = "Alt", chars = "\u001b[56;3u" },
+    { key = "8", mods = "Shift|Alt", chars = "\u001b[56;4u" },
+    { key = "8", mods = "Control", chars = "\u001b[56;5u" },
+    { key = "8", mods = "Shift|Control", chars = "\u001b[56;6u" },
+    { key = "8", mods = "Alt|Control", chars = "\u001b[56;7u" },
+    { key = "8", mods = "Shift|Alt|Control", chars = "\u001b[56;8u" },
+
+    { key = "9", mods = "Alt", chars = "\u001b[57;3u" },
+    { key = "9", mods = "Shift|Alt", chars = "\u001b[57;4u" },
+    { key = "9", mods = "Control", chars = "\u001b[57;5u" },
+    { key = "9", mods = "Shift|Control", chars = "\u001b[57;6u" },
+    { key = "9", mods = "Alt|Control", chars = "\u001b[57;7u" },
+    { key = "9", mods = "Shift|Alt|Control", chars = "\u001b[57;8u" },
+
+    { key = "0", mods = "Alt", chars = "\u001b[48;3u" },
+    { key = "0", mods = "Shift|Alt", chars = "\u001b[48;4u" },
+    { key = "0", mods = "Control", chars = "\u001b[48;5u" },
+    { key = "0", mods = "Shift|Control", chars = "\u001b[48;6u" },
+    { key = "0", mods = "Alt|Control", chars = "\u001b[48;7u" },
+    { key = "0", mods = "Shift|Alt|Control", chars = "\u001b[48;8u" },
+
+    # ══════════════════════════════════════════════════════
+    # 記号キー  (Shift 単体除外)
+    # ══════════════════════════════════════════════════════
+
+    { key = "`", mods = "Alt", chars = "\u001b[96;3u" },
+    { key = "`", mods = "Shift|Alt", chars = "\u001b[96;4u" },
+    { key = "`", mods = "Control", chars = "\u001b[96;5u" },
+    { key = "`", mods = "Shift|Control", chars = "\u001b[96;6u" },
+    { key = "`", mods = "Alt|Control", chars = "\u001b[96;7u" },
+    { key = "`", mods = "Shift|Alt|Control", chars = "\u001b[96;8u" },
+
+    { key = "-", mods = "Alt", chars = "\u001b[45;3u" },
+    { key = "-", mods = "Shift|Alt", chars = "\u001b[45;4u" },
+    { key = "-", mods = "Control", chars = "\u001b[45;5u" },
+    { key = "-", mods = "Shift|Control", chars = "\u001b[45;6u" },
+    { key = "-", mods = "Alt|Control", chars = "\u001b[45;7u" },
+    { key = "-", mods = "Shift|Alt|Control", chars = "\u001b[45;8u" },
+
+    { key = "=", mods = "Alt", chars = "\u001b[61;3u" },
+    { key = "=", mods = "Shift|Alt", chars = "\u001b[61;4u" },
+    { key = "=", mods = "Control", chars = "\u001b[61;5u" },
+    { key = "=", mods = "Shift|Control", chars = "\u001b[61;6u" },
+    { key = "=", mods = "Alt|Control", chars = "\u001b[61;7u" },
+    { key = "=", mods = "Shift|Alt|Control", chars = "\u001b[61;8u" },
+
+    { key = "[", mods = "Alt", chars = "\u001b[91;3u" },
+    { key = "[", mods = "Shift|Alt", chars = "\u001b[91;4u" },
+    { key = "[", mods = "Control", chars = "\u001b[91;5u" },
+    { key = "[", mods = "Shift|Control", chars = "\u001b[91;6u" },
+    { key = "[", mods = "Alt|Control", chars = "\u001b[91;7u" },
+    { key = "[", mods = "Shift|Alt|Control", chars = "\u001b[91;8u" },
+
+    { key = "]", mods = "Alt", chars = "\u001b[93;3u" },
+    { key = "]", mods = "Shift|Alt", chars = "\u001b[93;4u" },
+    { key = "]", mods = "Control", chars = "\u001b[93;5u" },
+    { key = "]", mods = "Shift|Control", chars = "\u001b[93;6u" },
+    { key = "]", mods = "Alt|Control", chars = "\u001b[93;7u" },
+    { key = "]", mods = "Shift|Alt|Control", chars = "\u001b[93;8u" },
+
+    { key = "\\", mods = "Alt", chars = "\u001b[92;3u" },
+    { key = "\\", mods = "Shift|Alt", chars = "\u001b[92;4u" },
+    { key = "\\", mods = "Control", chars = "\u001b[92;5u" },
+    { key = "\\", mods = "Shift|Control", chars = "\u001b[92;6u" },
+    { key = "\\", mods = "Alt|Control", chars = "\u001b[92;7u" },
+    { key = "\\", mods = "Shift|Alt|Control", chars = "\u001b[92;8u" },
+
+    { key = ";", mods = "Alt", chars = "\u001b[59;3u" },
+    { key = ";", mods = "Shift|Alt", chars = "\u001b[59;4u" },
+    { key = ";", mods = "Control", chars = "\u001b[59;5u" },
+    { key = ";", mods = "Shift|Control", chars = "\u001b[59;6u" },
+    { key = ";", mods = "Alt|Control", chars = "\u001b[59;7u" },
+    { key = ";", mods = "Shift|Alt|Control", chars = "\u001b[59;8u" },
+
+    { key = "'", mods = "Alt", chars = "\u001b[39;3u" },
+    { key = "'", mods = "Shift|Alt", chars = "\u001b[39;4u" },
+    { key = "'", mods = "Control", chars = "\u001b[39;5u" },
+    { key = "'", mods = "Shift|Control", chars = "\u001b[39;6u" },
+    { key = "'", mods = "Alt|Control", chars = "\u001b[39;7u" },
+    { key = "'", mods = "Shift|Alt|Control", chars = "\u001b[39;8u" },
+
+    { key = ",", mods = "Alt", chars = "\u001b[44;3u" },
+    { key = ",", mods = "Shift|Alt", chars = "\u001b[44;4u" },
+    { key = ",", mods = "Control", chars = "\u001b[44;5u" },
+    { key = ",", mods = "Shift|Control", chars = "\u001b[44;6u" },
+    { key = ",", mods = "Alt|Control", chars = "\u001b[44;7u" },
+    { key = ",", mods = "Shift|Alt|Control", chars = "\u001b[44;8u" },
+
+    { key = ".", mods = "Alt", chars = "\u001b[46;3u" },
+    { key = ".", mods = "Shift|Alt", chars = "\u001b[46;4u" },
+    { key = ".", mods = "Control", chars = "\u001b[46;5u" },
+    { key = ".", mods = "Shift|Control", chars = "\u001b[46;6u" },
+    { key = ".", mods = "Alt|Control", chars = "\u001b[46;7u" },
+    { key = ".", mods = "Shift|Alt|Control", chars = "\u001b[46;8u" },
+
+    { key = "/", mods = "Alt", chars = "\u001b[47;3u" },
+    { key = "/", mods = "Shift|Alt", chars = "\u001b[47;4u" },
+    { key = "/", mods = "Control", chars = "\u001b[47;5u" },
+    { key = "/", mods = "Shift|Control", chars = "\u001b[47;6u" },
+    { key = "/", mods = "Alt|Control", chars = "\u001b[47;7u" },
+    { key = "/", mods = "Shift|Alt|Control", chars = "\u001b[47;8u" },
+
+    # ══════════════════════════════════════════════════════
+    # テンキー
+    # ══════════════════════════════════════════════════════
+
+    { key = "NumpadEnter", mods = "Shift", chars = "\u001b[13;2u" },
+    { key = "NumpadEnter", mods = "Alt", chars = "\u001b[13;3u" },
+    { key = "NumpadEnter", mods = "Shift|Alt", chars = "\u001b[13;4u" },
+    { key = "NumpadEnter", mods = "Control", chars = "\u001b[13;5u" },
+    { key = "NumpadEnter", mods = "Shift|Control", chars = "\u001b[13;6u" },
+    { key = "NumpadEnter", mods = "Alt|Control", chars = "\u001b[13;7u" },
+    { key = "NumpadEnter", mods = "Shift|Alt|Control", chars = "\u001b[13;8u" },
+
+    { key = "Numpad0", mods = "Alt", chars = "\u001b[48;3u" },
+    { key = "Numpad0", mods = "Shift|Alt", chars = "\u001b[48;4u" },
+    { key = "Numpad0", mods = "Control", chars = "\u001b[48;5u" },
+    { key = "Numpad0", mods = "Shift|Control", chars = "\u001b[48;6u" },
+    { key = "Numpad0", mods = "Alt|Control", chars = "\u001b[48;7u" },
+    { key = "Numpad0", mods = "Shift|Alt|Control", chars = "\u001b[48;8u" },
+
+    { key = "Numpad1", mods = "Alt", chars = "\u001b[49;3u" },
+    { key = "Numpad1", mods = "Shift|Alt", chars = "\u001b[49;4u" },
+    { key = "Numpad1", mods = "Control", chars = "\u001b[49;5u" },
+    { key = "Numpad1", mods = "Shift|Control", chars = "\u001b[49;6u" },
+    { key = "Numpad1", mods = "Alt|Control", chars = "\u001b[49;7u" },
+    { key = "Numpad1", mods = "Shift|Alt|Control", chars = "\u001b[49;8u" },
+
+    { key = "Numpad2", mods = "Alt", chars = "\u001b[50;3u" },
+    { key = "Numpad2", mods = "Shift|Alt", chars = "\u001b[50;4u" },
+    { key = "Numpad2", mods = "Control", chars = "\u001b[50;5u" },
+    { key = "Numpad2", mods = "Shift|Control", chars = "\u001b[50;6u" },
+    { key = "Numpad2", mods = "Alt|Control", chars = "\u001b[50;7u" },
+    { key = "Numpad2", mods = "Shift|Alt|Control", chars = "\u001b[50;8u" },
+
+    { key = "Numpad3", mods = "Alt", chars = "\u001b[51;3u" },
+    { key = "Numpad3", mods = "Shift|Alt", chars = "\u001b[51;4u" },
+    { key = "Numpad3", mods = "Control", chars = "\u001b[51;5u" },
+    { key = "Numpad3", mods = "Shift|Control", chars = "\u001b[51;6u" },
+    { key = "Numpad3", mods = "Alt|Control", chars = "\u001b[51;7u" },
+    { key = "Numpad3", mods = "Shift|Alt|Control", chars = "\u001b[51;8u" },
+
+    { key = "Numpad4", mods = "Alt", chars = "\u001b[52;3u" },
+    { key = "Numpad4", mods = "Shift|Alt", chars = "\u001b[52;4u" },
+    { key = "Numpad4", mods = "Control", chars = "\u001b[52;5u" },
+    { key = "Numpad4", mods = "Shift|Control", chars = "\u001b[52;6u" },
+    { key = "Numpad4", mods = "Alt|Control", chars = "\u001b[52;7u" },
+    { key = "Numpad4", mods = "Shift|Alt|Control", chars = "\u001b[52;8u" },
+
+    { key = "Numpad5", mods = "Alt", chars = "\u001b[53;3u" },
+    { key = "Numpad5", mods = "Shift|Alt", chars = "\u001b[53;4u" },
+    { key = "Numpad5", mods = "Control", chars = "\u001b[53;5u" },
+    { key = "Numpad5", mods = "Shift|Control", chars = "\u001b[53;6u" },
+    { key = "Numpad5", mods = "Alt|Control", chars = "\u001b[53;7u" },
+    { key = "Numpad5", mods = "Shift|Alt|Control", chars = "\u001b[53;8u" },
+
+    { key = "Numpad6", mods = "Alt", chars = "\u001b[54;3u" },
+    { key = "Numpad6", mods = "Shift|Alt", chars = "\u001b[54;4u" },
+    { key = "Numpad6", mods = "Control", chars = "\u001b[54;5u" },
+    { key = "Numpad6", mods = "Shift|Control", chars = "\u001b[54;6u" },
+    { key = "Numpad6", mods = "Alt|Control", chars = "\u001b[54;7u" },
+    { key = "Numpad6", mods = "Shift|Alt|Control", chars = "\u001b[54;8u" },
+
+    { key = "Numpad7", mods = "Alt", chars = "\u001b[55;3u" },
+    { key = "Numpad7", mods = "Shift|Alt", chars = "\u001b[55;4u" },
+    { key = "Numpad7", mods = "Control", chars = "\u001b[55;5u" },
+    { key = "Numpad7", mods = "Shift|Control", chars = "\u001b[55;6u" },
+    { key = "Numpad7", mods = "Alt|Control", chars = "\u001b[55;7u" },
+    { key = "Numpad7", mods = "Shift|Alt|Control", chars = "\u001b[55;8u" },
+
+    { key = "Numpad8", mods = "Alt", chars = "\u001b[56;3u" },
+    { key = "Numpad8", mods = "Shift|Alt", chars = "\u001b[56;4u" },
+    { key = "Numpad8", mods = "Control", chars = "\u001b[56;5u" },
+    { key = "Numpad8", mods = "Shift|Control", chars = "\u001b[56;6u" },
+    { key = "Numpad8", mods = "Alt|Control", chars = "\u001b[56;7u" },
+    { key = "Numpad8", mods = "Shift|Alt|Control", chars = "\u001b[56;8u" },
+
+    { key = "Numpad9", mods = "Alt", chars = "\u001b[57;3u" },
+    { key = "Numpad9", mods = "Shift|Alt", chars = "\u001b[57;4u" },
+    { key = "Numpad9", mods = "Control", chars = "\u001b[57;5u" },
+    { key = "Numpad9", mods = "Shift|Control", chars = "\u001b[57;6u" },
+    { key = "Numpad9", mods = "Alt|Control", chars = "\u001b[57;7u" },
+    { key = "Numpad9", mods = "Shift|Alt|Control", chars = "\u001b[57;8u" },
+
+    { key = "NumpadDecimal", mods = "Alt", chars = "\u001b[46;3u" },
+    { key = "NumpadDecimal", mods = "Shift|Alt", chars = "\u001b[46;4u" },
+    { key = "NumpadDecimal", mods = "Control", chars = "\u001b[46;5u" },
+    { key = "NumpadDecimal", mods = "Shift|Control", chars = "\u001b[46;6u" },
+    { key = "NumpadDecimal", mods = "Alt|Control", chars = "\u001b[46;7u" },
+    { key = "NumpadDecimal", mods = "Shift|Alt|Control", chars = "\u001b[46;8u" },
+
+    { key = "NumpadAdd", mods = "Alt", chars = "\u001b[43;3u" },
+    { key = "NumpadAdd", mods = "Shift|Alt", chars = "\u001b[43;4u" },
+    { key = "NumpadAdd", mods = "Control", chars = "\u001b[43;5u" },
+    { key = "NumpadAdd", mods = "Shift|Control", chars = "\u001b[43;6u" },
+    { key = "NumpadAdd", mods = "Alt|Control", chars = "\u001b[43;7u" },
+    { key = "NumpadAdd", mods = "Shift|Alt|Control", chars = "\u001b[43;8u" },
+
+    { key = "NumpadSubtract", mods = "Alt", chars = "\u001b[45;3u" },
+    { key = "NumpadSubtract", mods = "Shift|Alt", chars = "\u001b[45;4u" },
+    { key = "NumpadSubtract", mods = "Control", chars = "\u001b[45;5u" },
+    { key = "NumpadSubtract", mods = "Shift|Control", chars = "\u001b[45;6u" },
+    { key = "NumpadSubtract", mods = "Alt|Control", chars = "\u001b[45;7u" },
+    { key = "NumpadSubtract", mods = "Shift|Alt|Control", chars = "\u001b[45;8u" },
+
+    { key = "NumpadMultiply", mods = "Alt", chars = "\u001b[42;3u" },
+    { key = "NumpadMultiply", mods = "Shift|Alt", chars = "\u001b[42;4u" },
+    { key = "NumpadMultiply", mods = "Control", chars = "\u001b[42;5u" },
+    { key = "NumpadMultiply", mods = "Shift|Control", chars = "\u001b[42;6u" },
+    { key = "NumpadMultiply", mods = "Alt|Control", chars = "\u001b[42;7u" },
+    { key = "NumpadMultiply", mods = "Shift|Alt|Control", chars = "\u001b[42;8u" },
+
+    { key = "NumpadDivide", mods = "Alt", chars = "\u001b[47;3u" },
+    { key = "NumpadDivide", mods = "Shift|Alt", chars = "\u001b[47;4u" },
+    { key = "NumpadDivide", mods = "Control", chars = "\u001b[47;5u" },
+    { key = "NumpadDivide", mods = "Shift|Control", chars = "\u001b[47;6u" },
+    { key = "NumpadDivide", mods = "Alt|Control", chars = "\u001b[47;7u" },
+    { key = "NumpadDivide", mods = "Shift|Alt|Control", chars = "\u001b[47;8u" },
+]

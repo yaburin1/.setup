@@ -1,0 +1,103 @@
+{
+    "vscode-neovim.useWSL": true,
+    "vscode-neovim.wslDistribution": "test",
+    "vscode-neovim.neovimInitVimPaths.linux": "~/.config/nvim/init.lua",
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.escape",
+        },
+    },
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "editor.lineNumbers": "relative",
+    "editor.detectIndentation": false,
+    "files.eol": "\n",
+    "workbench.colorTheme": "Monokai",
+    "editor.formatOnSave": true,
+    "editor.stickyScroll.enabled": false,
+    "editor.cursorSurroundingLines": 15,
+    "workbench.startupEditor": "none",
+    "workbench.colorCustomizations": {},
+    "editor.fontSize": 18,
+    "workbench.editor.empty.hint": "hidden",
+    "css.completion.completePropertyWithSemicolon": false,
+    "tabout.charactersToTabOutFrom": [
+        {
+            "open": "[",
+            "close": "]"
+        },
+        {
+            "open": "{",
+            "close": "}"
+        },
+        {
+            "open": "(",
+            "close": ")"
+        },
+        {
+            "open": "'",
+            "close": "'"
+        },
+        {
+            "open": "\"",
+            "close": "\""
+        },
+        {
+            "open": ":",
+            "close": ":"
+        },
+        {
+            "open": "=",
+            "close": "="
+        },
+        {
+            "open": ">",
+            "close": ">"
+        },
+        {
+            "open": "<",
+            "close": "<"
+        },
+        {
+            "open": ".",
+            "close": "."
+        },
+        {
+            "open": "`",
+            "close": "`"
+        },
+        {
+            "open": ";",
+            "close": ";"
+        }
+    ],
+    "vscode-neovim.neovimWidth": 200,
+    "vscode-neovim.neovimViewportHeightExtend": 2,
+    "vscode-neovim.ctrlKeysForInsertMode": [
+        "a",
+        "c",
+        "d",
+        "h",
+        "j",
+        "m",
+        "o",
+        "r",
+        "t",
+        "u",
+        "w",
+        "g",
+        "k"
+    ],
+    "editor.suggest.selectionMode": "never",
+    "workbench.activityBar.location": "top",
+    "explorer.confirmDelete": false,
+    "editor.minimap.enabled": false,
+    "editor.fontLigatures": false,
+    "editor.fontFamily": "\"HackGen35 Console NF\"  ",
+    "debug.console.fontSize": 18,
+    "chat.fontSize": 18,
+    "chat.editor.fontSize": 18,
+    "scm.inputFontSize": 18,
+    "terminal.integrated.fontSize": 18,
+}

@@ -1,0 +1,6 @@
+[user]
+	name = yaburin1
+[core]
+	editor = nvim
+[init]
+	defaultBranch = main
