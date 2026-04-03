@@ -53,6 +53,8 @@ export EDITOR=nvim
 alias la='ls -al'
 alias ll='ls -l'
 
+alias win='cd /mnt/c/Users/yabur/Desktop/'
+
 # フォルダ名のみでその階層に移動できるようにする(>bash4.0)
 # shopt -s autocd
 # alias ...='cd ../..'
