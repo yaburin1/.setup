@@ -28,11 +28,12 @@ git clone --filter=blob:none --no-checkout https://github.com/yaburin1/.setup.gi
 cd .setup
 git sparse-checkout init --no-cone
 # pull file #####################################################################
-git sparse-checkout set nvim/* tmux/.tmux.conf .gitignore atcoder/* bash/.bashrc
+git sparse-checkout set nvim/* tmux/.tmux.conf .gitignore atcoder/* bash/.bashrc /git/.gitconfig
 #################################################################################
 git checkout main
 # ファイル配置(シンボリックリンク) #####################################################
 mkdir ~/.config
+ln -snf ~/.setup/git/.gitconfig ~/.gitconfig
 ln -snf ~/.setup/nvim/ ~/.config
 ln -snf ~/.setup/tmux/.tmux.conf ~/
 ln -snf ~/.setup/bash/.bashrc ~/.bashrc
