@@ -7,9 +7,10 @@ sudo dnf -y upgrade
 sudo dnf -y group install development-tools
 sudo dnf -y install gcc-c++
 sudo dnf -y install neovim
-sudo dnf -y install fd-find
-sudo dnf -y install ripgrep
-sudo npm install -g tree-sitter-cli
+sudo dnf -y install fd-find #telescope-nvim
+sudo dnf -y install ripgrep #smart-open
+sudo dnf -y install sqlite sqlite-devel sqlite-tcl #smart-open
+sudo npm install -g tree-sitter-cli #treesitter
 ###############################################
 #tmux
 sudo dnf -y install tmux
