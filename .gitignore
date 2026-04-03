@@ -1,4 +1,4 @@
-.nvim/lazy-lock.json
-.nvim/notes/*
-.ssh/*
+nvim/lazy-lock.json
+nvim/notes/*
+ssh/*
 .env
