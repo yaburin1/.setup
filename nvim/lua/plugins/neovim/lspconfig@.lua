@@ -9,6 +9,9 @@ return {
 		-- nvim/after/lsp/<LSP名>.luaで設定上書き
 		"neovim/nvim-lspconfig",
 		event = { "BufReadPre", "BufNewFile" }, --*
+		config=function()
+			vim.env.PATH = vim.env.PATH .. ":" .. vim.fn.stdpath("data") .. "/mason/bin"
+		end,
 	},
 	{
 		-- [必要]
