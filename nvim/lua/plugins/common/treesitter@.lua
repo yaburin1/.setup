@@ -9,6 +9,7 @@ return {
         config = function()
             local v = vim
             local api = v.api
+            -- require("nvim-treesitter").install({ "lua" })
             api.nvim_create_autocmd("FileType", {
                 group = api.nvim_create_augroup("nvim_treesitter_start", {}),
                 callback = function(args)

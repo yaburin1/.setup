@@ -20,6 +20,8 @@ return {
         -- "neovim/nvim-lspconfig" --lsp設定集
         "mason-org/mason-lspconfig.nvim",
         event = { "CursorMoved", "CursorHold" }, --*
-        opts = {},
+        opts = {
+            -- ensure_installed = { "lua_ls", "rust_analyzer" },
+        },
     },
 }
