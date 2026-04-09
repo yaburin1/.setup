@@ -8,7 +8,6 @@ cd
 sudo dnf -y update && sudo dnf -y upgrade
 #neovim ########################################
 sudo dnf -y group install development-tools
-<<<<<<< HEAD
 sudo dnf -y install \
     gcc-c++ \
     neovim \
@@ -18,15 +17,6 @@ sudo dnf -y install \
     wl-clipboard \
     sqlite sqlite-devel sqlite-tcl
 sudo npm install -g tree-sitter-cli
-=======
-sudo dnf -y install gcc-c++ \
-fd-find \
-ripgrep \
-sqlite sqlite-devel sqlite-tcl \
-nodejs-npm
-sudo npm install -g tree-sitter-cli #treesitter
->>>>>>> origin/HEAD
-
 # Neovim 最新パッケージインストール (dnfが対応次第置き換える)############
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
 chmod u+x nvim-linux-x86_64.appimage
@@ -34,23 +24,12 @@ chmod u+x nvim-linux-x86_64.appimage
 rm nvim-linux-x86_64.appimage
 sudo mv squashfs-root/ /opt/nvim/
 sudo ln -s /opt/nvim/AppRun /usr/bin/nvim
-<<<<<<< HEAD
 
 ###############################################
 #その他ツール
 sudo dnf -y install \
     tmux \
     gh
-=======
-######################################################################
-#tmux
-sudo dnf -y install tmux
-#github
-sudo dnf -y install gh
-#wslクリップボード
-sudo dnf -y install wl-clipboard 
->>>>>>> origin/HEAD
-
 #Rust Iced GUI libX11 ###################################
 #Xserver
 #sudo dnf -y install libX11-devel
@@ -91,7 +70,6 @@ git sparse-checkout init --no-cone
 git sparse-checkout set nvim/* tmux/.tmux.conf .gitignore atcoder/* bash/* /git/.gitconfig /setup_bash/nvim_setup.sh
 #################################################################################
 git checkout main
-sudo cp -r /mnt/e/.setup/.ssh/ ~/
 # ファイル配置(シンボリックリンク) #####################################################
 mkdir ~/.config
 ln -snf ~/.setup/git/.gitconfig ~/.gitconfig
@@ -115,4 +93,3 @@ enabled = true
 appendWindowsPath = true
 EOF
 #########################################################################
-
