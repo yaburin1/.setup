@@ -17,6 +17,8 @@ sudo npm install -g tree-sitter-cli #treesitter
 sudo dnf -y install tmux
 #github
 sudo dnf -y install gh
+#wslクリップボード
+sudo dnf -y install wl-clipboard 
 #atcoder #######################################
 sudo dnf -y install openssl-devel
 sudo dnf -y install jq
