@@ -10,6 +10,7 @@ sudo dnf -y install neovim
 sudo dnf -y install fd-find #telescope-nvim
 sudo dnf -y install ripgrep #smart-open
 sudo dnf -y install sqlite sqlite-devel sqlite-tcl #smart-open
+sudo dnf -y install nodejs-npm 
 sudo npm install -g tree-sitter-cli #treesitter
 ###############################################
 #tmux
