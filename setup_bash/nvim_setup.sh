@@ -19,7 +19,30 @@ sudo dnf -y install tmux
 sudo dnf -y install gh
 #wslクリップボード
 sudo dnf -y install wl-clipboard 
-#atcoder #######################################
+
+#Rust Iced GUI libX11 ###################################
+#sudo dnf -y install libX11-devel
+#sudo dnf -y install libXext-devel
+#sudo dnf -y install libXcursor-devel
+#sudo dnf -y install libXi-devel
+#sudo dnf -y install libXrandr-devel
+#sudo dnf -y install mesa-libGL-devel
+#sudo dnf -y install  mesa-libEGL-devel
+# 入力系
+#sudo dnf -y install libxkbcommon-x11
+#sudo dnf -y install libxkbcommon-devel
+#sudo dnf -y install libxkbcommon-x11-devel
+#IME
+#sudo dnf -y install fcitx5
+#sudo dnf -y install fcitx5-mozc
+#sudo dnf -y install dbus-x11
+#そのままでは使えないので以下のurl手順を実行 
+#https://github.com/microsoft/WSL/issues/10205#issuecomment-2198582165
+#全角半角キー連打を解消
+#sudo dnf -y install xset
+#sudo xset -r 49
+# fcitx5-configtoolでmzucに設定
+#atcoder ##############################################
 sudo dnf -y install openssl-devel
 sudo dnf -y install jq
 sudo dnf -y copr enable wslutilities/wslu fedora-41-x86_64
