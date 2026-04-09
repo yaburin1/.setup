@@ -1,18 +1,24 @@
 #!/bin/bash
 cd
 #更新 ##########################################
-sudo dnf -y update
-sudo dnf -y upgrade
+sudo dnf -y update && sudo dnf -y upgrade
 #neovim ########################################
 sudo dnf -y group install development-tools
-sudo dnf -y install gcc-c++
-sudo dnf -y install neovim
-sudo dnf -y install fd-find #telescope-nvim
-sudo dnf -y install ripgrep #smart-open
-sudo dnf -y install sqlite sqlite-devel sqlite-tcl #smart-open
-sudo dnf -y install nodejs-npm 
+sudo dnf -y install gcc-c++ \
+fd-find \
+ripgrep \
+sqlite sqlite-devel sqlite-tcl \
+nodejs-npm
 sudo npm install -g tree-sitter-cli #treesitter
-###############################################
+
+# Neovim 最新パッケージインストール (dnfが対応次第置き換える)############
+curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+chmod u+x nvim-linux-x86_64.appimage
+./nvim-linux-x86_64.appimage --appimage-extract
+rm nvim-linux-x86_64.appimage
+sudo mv squashfs-root/ /opt/nvim/
+sudo ln -s /opt/nvim/AppRun /usr/bin/nvim
+######################################################################
 #tmux
 sudo dnf -y install tmux
 #github
