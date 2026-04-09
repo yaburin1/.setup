@@ -66,7 +66,7 @@ if not vimg.vscode then
     -- opt.cursorcolumn = true --カーソル列ハイライト
     opt.termguicolors = true  --24bit カラー有効化
     opt.laststatus = 2        --ステータスラインの表示形式(1)
-
+    opt.cmdheight = 0
     --[スクロール]
     opt.scrolloff = 15 --スクロールを開始するまでの行数 (0)
 
