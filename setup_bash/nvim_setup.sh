@@ -17,6 +17,7 @@ sudo dnf -y install \
     wl-clipboard \
     sqlite sqlite-devel sqlite-tcl
 sudo npm install -g tree-sitter-cli
+
 # Neovim 最新パッケージインストール (dnfが対応次第置き換える)############
 curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
 chmod u+x nvim-linux-x86_64.appimage
@@ -30,29 +31,21 @@ sudo ln -s /opt/nvim/AppRun /usr/bin/nvim
 sudo dnf -y install \
     tmux \
     gh
-#Rust Iced GUI libX11 ###################################
-#Xserver
-#sudo dnf -y install libX11-devel
-#sudo dnf -y install libXext-devel
-#sudo dnf -y install libXcursor-devel
-#sudo dnf -y install libXi-devel
-#sudo dnf -y install libXrandr-devel
-#sudo dnf -y install mesa-libGL-devel
-#sudo dnf -y install  mesa-libEGL-devel
-# 入力系
-#sudo dnf -y install libxkbcommon-x11
-#sudo dnf -y install libxkbcommon-devel
-#sudo dnf -y install libxkbcommon-x11-devel
+#Rust Iced ##################################
+sudo dnf install -y mesa-vulkan-drivers vulkan-loader
 #IME
-#sudo dnf -y install fcitx5
-#sudo dnf -y install fcitx5-mozc
-#sudo dnf -y install dbus-x11
+sudo dnf -y install fcitx5-mozc
+
 #そのままでは使えないので以下のurl手順を実行
 #https://github.com/microsoft/WSL/issues/10205#issuecomment-2198582165
 #全角半角キー連打を解消
-#sudo dnf -y install xset
-#sudo xset -r 49
+sudo dnf -y install xset
+sudo xset -r 49
 # fcitx5-configtoolでmzucに設定
+#
+#.cargo/config.tomlに以下を設定
+# [env]
+# WAYLAND_DISPLAY = { value = "", force = true }
 
 #atcoder ##############################################
 sudo dnf -y install \

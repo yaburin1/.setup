@@ -40,6 +40,21 @@ export LESSCHARSET=utf-8
 export BROWSER=wslview
 export EDITOR=nvim
 
+#GPUを使う
+export GALLIUM_DRIVER=d3d12
+
+#IME(fcitx5)
+export XMODIFIERS=@im=fcitx
+# export GTK_IM_MODULE=fcitx
+# export QT_IM_MODULE=fcitx
+
+# Fcitx5が起動していなければ起動する (Waylandモードを無効化して起動)
+if ! pgrep -x "fcitx5" > /dev/null; then
+    WAYLAND_DISPLAY= fcitx5 -d > /dev/null 2>&1
+fi
+# icedでx11を使う設定
+export WINIT_UNIX_BACKEND=x11
+
 # export LANG=ja_JP.UTF-8
 # export LANGUAGE=ja_JP:ja
 
