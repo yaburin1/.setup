@@ -45,8 +45,8 @@ export GALLIUM_DRIVER=d3d12
 
 #IME(fcitx5)
 export XMODIFIERS=@im=fcitx
-# export GTK_IM_MODULE=fcitx
-# export QT_IM_MODULE=fcitx
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
 
 # Fcitx5が起動していなければ起動する (Waylandモードを無効化して起動)
 if ! pgrep -x "fcitx5" > /dev/null; then
