@@ -35,8 +35,6 @@ sudo dnf -y install \
 sudo dnf install -y mesa-vulkan-drivers vulkan-loader
 #IME
 sudo dnf -y install fcitx5 fcitx5-mozc fcitx5-configtool 
-#そのままでは使えないので以下のurl手順を実行
-#https://github.com/microsoft/WSL/issues/10205#issuecomment-2198582165
 #全角半角キー連打を解消
 sudo dnf -y install xset
 sudo xset -r 49
