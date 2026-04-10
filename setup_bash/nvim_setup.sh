@@ -10,7 +10,6 @@ sudo dnf -y update && sudo dnf -y upgrade
 sudo dnf -y group install development-tools
 sudo dnf -y install \
     gcc-c++ \
-    neovim \
     fd-find \
     ripgrep \
     nodejs-npm \
@@ -34,10 +33,10 @@ sudo dnf -y install \
 #Rust Iced ##################################
 sudo dnf install -y mesa-vulkan-drivers vulkan-loader
 #IME
-sudo dnf -y install fcitx5 fcitx5-mozc fcitx5-configtool 
+#sudo dnf -y install fcitx5 fcitx5-mozc fcitx5-configtool 
 #全角半角キー連打を解消
-sudo dnf -y install xset
-sudo xset -r 49
+#sudo dnf -y install xset
+#sudo xset -r 49
 # fcitx5-configtoolでmzucに設定
 #
 #.cargo/config.tomlに以下を設定
