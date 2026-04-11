@@ -85,7 +85,7 @@ if not vimg.vscode then
     opt.hidden = true          --ファイルを閉じずにバッファを切り替え (false)
 end
 require("keymaps")
-
+require("message")
 require("lazy").setup({
     defaults = {
         lazy = true,

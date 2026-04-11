@@ -25,6 +25,22 @@ unset rc
 
 ###追加設定##################################################################################
 
+##### iced 入力補完設定 #####################################################################
+#GPUを使う
+export WGPU_BACKEND=vulkan
+
+#IME(fcitx5)
+export GTK_IM_MODULE=fcitx
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=ibus
+fcitx5 --disable=wayland -d  --verbose '*'=0
+sudo xset -r 49
+
+# iced(winit)でIMEを使う時指定(.cargo/config.toml)
+# unset WAYLAND_DISPLAY
+
 # 環境変数###################################################################################
 
 #表示形式
@@ -40,20 +56,6 @@ export LESSCHARSET=utf-8
 export BROWSER=wslview
 export EDITOR=nvim
 
-#GPUを使う
-export GALLIUM_DRIVER=d3d12
-
-#IME(fcitx5)
-#export XMODIFIERS=@im=fcitx
-#export GTK_IM_MODULE=fcitx
-#export QT_IM_MODULE=fcitx
-
-# Fcitx5が起動していなければ起動する (Waylandモードを無効化して起動)
-#if ! pgrep -x "fcitx5" > /dev/null; then
-    #WAYLAND_DISPLAY= fcitx5 -d > /dev/null 2>&1
-#fi
-# icedでx11を使う設定
-#export WINIT_UNIX_BACKEND=x11
 
 # export LANG=ja_JP.UTF-8
 # export LANGUAGE=ja_JP:ja
@@ -157,3 +159,4 @@ atest() {
 }
 
 . "$HOME/.cargo/env"
+

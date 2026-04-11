@@ -30,18 +30,6 @@ sudo ln -s /opt/nvim/AppRun /usr/bin/nvim
 sudo dnf -y install \
     tmux \
     gh
-#Rust Iced ##################################
-sudo dnf install -y mesa-vulkan-drivers vulkan-loader
-#IME
-#sudo dnf -y install fcitx5 fcitx5-mozc fcitx5-configtool 
-#全角半角キー連打を解消
-#sudo dnf -y install xset
-#sudo xset -r 49
-# fcitx5-configtoolでmzucに設定
-#
-#.cargo/config.tomlに以下を設定
-# [env]
-# WAYLAND_DISPLAY = { value = "", force = true }
 
 #atcoder ##############################################
 sudo dnf -y install \
@@ -82,3 +70,36 @@ enabled = true
 appendWindowsPath = true
 EOF
 #########################################################################
+#Rust Iced ##################################
+#GPU(WSLg)################################################
+sudo dnf install -y vulkan-loader  vulkan-tools
+###########vulkanが存在しないデバイスを読まないようにする########
+sudo mkdir -p /usr/share/vulkan/icd.d/disabled
+cd /user/share/vulkan/icd.d/
+sudo mv /usr/share/vulkan/icd.d/*radeon* disabled/
+sudo mv /usr/share/vulkan/icd.d/*nouveau* disabled/
+sudo mv /usr/share/vulkan/icd.d/*panfrost* disabled/
+sudo mv /usr/share/vulkan/icd.d/*freedreno* disabled/
+sudo mv /usr/share/vulkan/icd.d/*broadcom* disabled/
+sudo mv /usr/share/vulkan/icd.d/*asahi* disabled/
+sudo mv /usr/share/vulkan/icd.d/*virtio* disabled/
+sudo mv /usr/share/vulkan/icd.d/*powervr* disabled/
+sudo mv /usr/share/vulkan/icd.d/*intel_hasvk* disabled/
+sudo mv /usr/share/vulkan/icd.d/*intel_icd* disabled/
+cd
+########もしくは############################################
+# export GALLIUM_DRIVER=d3d12
+# export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
+# export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/dzn_icd.x86_64.json
+###########################################################
+
+#IME
+sudo dnf -y install fcitx5 fcitx5-mozc
+
+#全角半角キー連打を解消
+sudo dnf -y install xset
+# fcitx5-configtoolでmzucに設定
+#
+#.cargo/config.tomlに以下を設定
+# [env]
+# WAYLAND_DISPLAY = { value = "", force = true }
