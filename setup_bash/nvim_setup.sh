@@ -75,18 +75,17 @@ EOF
 sudo dnf install -y vulkan-loader  vulkan-tools
 ###########vulkanが存在しないデバイスを読まないようにする########
 sudo mkdir -p /usr/share/vulkan/icd.d/disabled
-cd /user/share/vulkan/icd.d/
-sudo mv /usr/share/vulkan/icd.d/*radeon* disabled/
-sudo mv /usr/share/vulkan/icd.d/*nouveau* disabled/
-sudo mv /usr/share/vulkan/icd.d/*panfrost* disabled/
-sudo mv /usr/share/vulkan/icd.d/*freedreno* disabled/
-sudo mv /usr/share/vulkan/icd.d/*broadcom* disabled/
-sudo mv /usr/share/vulkan/icd.d/*asahi* disabled/
-sudo mv /usr/share/vulkan/icd.d/*virtio* disabled/
-sudo mv /usr/share/vulkan/icd.d/*powervr* disabled/
-sudo mv /usr/share/vulkan/icd.d/*intel_hasvk* disabled/
-sudo mv /usr/share/vulkan/icd.d/*intel_icd* disabled/
-cd
+
+sudo mv /usr/share/vulkan/icd.d/*radeon* /usr/share/vulkan/icd.d/disabled/
+sudo mv /usr/share/vulkan/icd.d/*nouveau* /usr/share/vulkan/icd.d/disabled/
+sudo mv /usr/share/vulkan/icd.d/*panfrost* /usr/share/vulkan/icd.d/disabled/
+sudo mv /usr/share/vulkan/icd.d/*freedreno* /usr/share/vulkan/icd.d/disabled/
+sudo mv /usr/share/vulkan/icd.d/*broadcom* /usr/share/vulkan/icd.d/disabled/
+sudo mv /usr/share/vulkan/icd.d/*asahi* /usr/share/vulkan/icd.d/disabled/
+sudo mv /usr/share/vulkan/icd.d/*virtio* /usr/share/vulkan/icd.d/disabled/
+sudo mv /usr/share/vulkan/icd.d/*powervr* /usr/share/vulkan/icd.d/disabled/
+sudo mv /usr/share/vulkan/icd.d/*intel_hasvk* /usr/share/vulkan/icd.d/disabled/
+sudo mv /usr/share/vulkan/icd.d/*intel_icd* /usr/share/vulkan/icd.d/disabled/
 ########もしくは############################################
 # export GALLIUM_DRIVER=d3d12
 # export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA

@@ -54,6 +54,28 @@ if not vimg.vscode then
     -- neovimのみの設定
     -----------------------------------
     ---
+    if vim.fn.executable('wl-copy') ~= 1 then
+        vim.g.clipboard = {
+            name = 'OSC 52',
+            copy = {
+                ['+'] = require('vim.ui.clipboard.osc52').copy('+'),
+                ['*'] = require('vim.ui.clipboard.osc52').copy('*'),
+            },
+            paste = {
+                ['+'] = require('vim.ui.clipboard.osc52').paste('+'),
+                ['*'] = require('vim.ui.clipboard.osc52').paste('*'),
+            },
+            -- paste = {
+            --     ['+'] = function()
+            --         return { vim.fn.getreg('0', 1, true), vim.fn.getregtype('0') }
+            --     end,
+            --     ['*'] = function()
+            --         return { vim.fn.getreg('0', 1, true), vim.fn.getregtype('0') }
+            --     end,
+            -- },
+        }
+    end
+
     opt.winborder = "rounded"
     -- [ウィンドウ管理とタブページ]
     opt.splitbelow = true --新しいウィンドウを下に開く (false)
@@ -83,9 +105,9 @@ if not vimg.vscode then
     opt.fileformat = "unix"    --ファイルの改行コード (unix/dos/mac)
 
     opt.hidden = true          --ファイルを閉じずにバッファを切り替え (false)
+    require("message")
 end
 require("keymaps")
-require("message")
 require("lazy").setup({
     defaults = {
         lazy = true,

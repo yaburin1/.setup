@@ -35,11 +35,15 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export SDL_IM_MODULE=fcitx
 export GLFW_IM_MODULE=ibus
-fcitx5 --disable=wayland -d  --verbose '*'=0
+# fcitx5 --disable=wayland -d  --verbose '*'=0
 sudo xset -r 49
 
 # iced(winit)でIMEを使う時指定(.cargo/config.toml)
-# unset WAYLAND_DISPLAY
+# [env]
+# WAYLAND_DISPLAYA={value="",force=true}
+
+#x11(Xwayland)カーソルサイズ変更
+export XCURSOR_SIZE=12
 
 # 環境変数###################################################################################
 
@@ -105,7 +109,15 @@ anew() {
         tmp=${current_dir#*atcoder/}
         contest=${tmp%%/*}
     else
-        readarray -t tmp_arr < <(${acdir}/random_atcoder 200 600)
+        if ! tmp_arr=($(
+            "${acdir}/random_atcoder" \
+            -f "${acdir}/difficlt_abc_20260330.csv" \
+            -e "${acdir}/submitted_abc.csv" \
+            200 600
+        )); then
+            echo "random_atcoder failed"
+            return 1
+        fi        
         contest="${tmp_arr[0]}"
         problems+=("${tmp_arr[1]}")
 
